@@ -1,0 +1,94 @@
+
+#mylogo {
+    font-size:20px; 
+    width:fit-content'
+}
+
+#mylogo img {
+  width: 25px;
+}
+
+#cart {
+   font-size:19px;
+   position:relative;
+}
+
+#cart .badge{
+        border-radius:50%;
+        position:absolute;
+        z-index:100;
+        top:-5px;
+        right:-12px;
+        background-color:red;
+        font-size:14px;
+        font-weight:700;
+        width:19px;
+        text-align:center;
+}
+#cart:hover {
+  background-color: #eae2e2 !important;
+  transition-property: background-color ;
+  transition-duration: .5s;
+  transition-timing-function: ease-in-out;
+}
+#rightNav div button {
+  font-size: 19px;
+}
+#heart:hover{
+  background-color: #eae2e2  !important;
+  transition-property: background-color ;
+  transition-duration: .5s;
+  transition-timing-function: ease-in-out;
+}
+#login:hover{
+  background-color: #eae2e2  !important;
+  transition-property: background-color ;
+  transition-duration: .5s;
+  transition-timing-function: ease-in-out;
+}
+.sub-menu-nav{
+  border:solid 3px white;
+  border-bottom: none;
+  padding:4px 13px;
+}
+.sub-menu-nav-active {
+  border:solid black 3px;
+  border-top-right-radius:10px;
+  border-top-left-radius:10px;
+  border-bottom:solid white 3px;
+  padding:4px 13px;
+  background-color:rgb(182 203 226 / 50%);
+}
+.item-card{
+  position: relative;
+}
+.item-card .info{
+  font-size:18px;
+}
+.item-card .info .title{
+  font-size: 21px;
+  font-weight:500;
+}
+.item-card .info .dicounted{
+  font-weight: 400;
+}
+.item-card .info .discount{
+  color:green;
+}
+
+.item-card .info .price{
+  color: grey;
+  text-decoration: line-through;
+}
+.item-card .heart {
+  position:absolute;
+  z-index:200;
+  top:2px;
+  right:2px;
+  font-size:25px;
+  
+}
+.item-card .heart i:hover {
+  color: red;
+  cursor: pointer; 
+}
