@@ -1,13 +1,23 @@
-import React from 'react'
+import React , {useContext} from 'react'
+import {Link} from 'react-router-dom'
 import logo from '../livingDesireLogo.svg'
+import UserContext from '../Context/UserContext/UserContext'
+import CartContext from '../Context/CartContext/CartContext'
 const Navbar = () => {
+    const userContext = useContext(UserContext);
+    const cartContext = useContext(CartContext);
+    const { isAuth ,login,logout  } = userContext;
+    const {itemCount} = cartContext;
     return (
         <nav>
             <nav >
                 <div className="row p-2">
+                    
                     <div className=" my-1 d-flex order-0 col-12 col-md-3 col-lg-2 justify-content-center">
-                        <div id="mylogo" class="mylogo"><img src={logo} alt="..." />Livingdesire</div>
+                    <Link to='/' style={{textDecoration:"none"}} ><div id="mylogo" class="mylogo"><img src={logo} alt="..." />Livingdesire</div>
+                    </Link>
                     </div>
+                   
                     <div className="my-1 order-2 col-12 order-md-1  col-md-5 col-lg-7">
                         <form class="d-flex">
                             <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" />
@@ -19,8 +29,10 @@ const Navbar = () => {
                         <button id="cart" className="btn-sm bg-white "  >
 
                             <i class="fas fa-shopping-cart"></i>
-                            <div class="badge">2</div>
 
+                            {
+                                ( itemCount>0 ) && <div class="badge">{itemCount}</div> 
+                            }    
                         </button>
                         </div>
                         <div  >
@@ -29,9 +41,16 @@ const Navbar = () => {
                             </button>
                         </div> 
                         <div>
-                        <button id="login" className="btn-sm bg-white"  >
+                        { (isAuth)?
+                        <button onClick={logout} id="login" className="btn-sm bg-white"  >
+                            Logout
+                        </button>
+                        :  
+                        <button id="login" onClick={login} className="btn-sm bg-white"  >
                                 Login/Sign Up
-                            </button> 
+                        </button>
+                        }
+                         
                         </div>
                     </div>
                 </div>

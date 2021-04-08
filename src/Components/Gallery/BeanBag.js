@@ -1,23 +1,19 @@
-import React,{useState} from 'react'
-
+import React,{useContext} from 'react'
+import BeanBagContext from '../../Context/BeanBagContext/BeanBagContext'
+import CartContext from '../../Context/CartContext/CartContext'
 const BeanBag = () => {
-    const allitems = [
-        {
-            name: "Name",
-            price:2500,
-            discountedPrice:1000,
-            discountPercent:20,
-            imgUrls:['img/images.jfif','img/images.jfif','img/images.jfif']
-        }
-    ]
 
-    const [items, setitems] = useState(allitems)
+   
+    const beanbagContext = useContext(BeanBagContext);
+    const cartContext = useContext(CartContext);
+    const { beanbag , toggleInCart }  = beanbagContext;
+    const {removeFromCart,addToCart} = cartContext ;
     return (
-        items.map((item,idx)=>{
+        beanbag.map((item,idx)=>{
             return (
                 <div className="col-6 col-md-4 col-lg-3" style={{padding:"30px"}}>
                 <div className="card  item-card w-100" >
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div id={"carouselExampleControls"+idx} class="carousel slide" data-ride="carousel" data-interval="false">
   <div class="carousel-inner" >
       {
       item.imgUrls.map( (imgUrl ,idx)=>{
@@ -31,11 +27,11 @@ const BeanBag = () => {
    
     
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+  <a class="carousel-control-prev" href={"#carouselExampleControls"+idx} role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+  <a class="carousel-control-next" href={"#carouselExampleControls"+idx} role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
@@ -50,9 +46,16 @@ const BeanBag = () => {
                        {item.discountPercent} {''} % OFF
                     </span>    
                     </p>
-                    <button className="btn btn-dark btn-block">
+                    {
+                    ( !item.inCart )?
+                    <button onClick={()=>{ toggleInCart(idx) ;  addToCart(item) ; }} className="btn btn-dark btn-block">
                       Add To Cart
                     </button>
+                    :
+                    <button onClick={ ()=>{ toggleInCart(idx) ; removeFromCart(idx); } } className="btn btn-dark btn-block">
+                      Remove From Cart
+                    </button>
+                    }
                 </div>
                 <div class="heart" >
                 <i class="far fa-heart"></i> 

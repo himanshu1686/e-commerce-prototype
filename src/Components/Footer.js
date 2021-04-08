@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 const Footer = () => {
     return (
+        <>
+        <hr />
         <div className="row my-5 mx-2">
             <div className="col-8 justify-content-around  d-flex">
                 <Link to='/about'><div>About Us</div></Link>
@@ -11,6 +13,7 @@ const Footer = () => {
 
             </div>
         </div>
+        </>
     )
 }
 
